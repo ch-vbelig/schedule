@@ -123,13 +123,17 @@ const MyCalendarConst = () => {
     // })
 
   
+    const filterEvents = () => {
+        const returnedEvents = roomFilter == 0? state.events : state.events.filter(event => event.room === roomFilter)
+        return returnedEvents;
+    }
 
     return (
       <DragAndDropCalendar
         selectable
         defaultDate={new Date()}
         localizer={localizer}
-        events={roomFilter == 0? state.events : state.events.filter(event => event.room === roomFilter)}
+        events={filterEvents()}
         onEventDrop={moveEvent}
         resizable
         onEventResize={resizeEvent}
