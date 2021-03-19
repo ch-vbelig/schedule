@@ -18,18 +18,16 @@ const eventSlice = createSlice({
               },
               {
                 id: 1,
-                allDay: true,
-                start: new Date(2021, 2, 22),
-                end: new Date(2021, 2, 23),
-                title: "Комната 22",
+                start: new Date(2021, 2, 22, 14, 0),
+                end: new Date(2021, 2, 23, 14, 30),
+                title: "Комната 2",
                 room: 2,
                 participants: ["Леха", "Данил"]
               },
               {
                 id: 2,
-                allDay: true,
-                start: new Date(2021, 2, 25),
-                end: new Date(2021, 2, 26),
+                start: new Date(2021, 2, 25, 16, 0),
+                end: new Date(2021, 2, 25, 17, 0),
                 title: "Комната 3",
                 room: 3,
                 participants: ["Влад", "Лиза"]
