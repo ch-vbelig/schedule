@@ -13,7 +13,8 @@ const eventSlice = createSlice({
                   .add(1, "days")
                   .toDate(),
                 title: "Комната 1",
-                room: 1
+                room: 1,
+                participants: ["Бэлиг", "Данил"]
               },
               {
                 id: 1,
@@ -21,7 +22,8 @@ const eventSlice = createSlice({
                 start: new Date(2021, 2, 22),
                 end: new Date(2021, 2, 23),
                 title: "Комната 22",
-                room: 2
+                room: 2,
+                participants: ["Леха", "Данил"]
               },
               {
                 id: 2,
@@ -29,7 +31,8 @@ const eventSlice = createSlice({
                 start: new Date(2021, 2, 25),
                 end: new Date(2021, 2, 26),
                 title: "Комната 3",
-                room: 3
+                room: 3,
+                participants: ["Влад", "Лиза"]
               }
         ],
     },

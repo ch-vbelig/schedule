@@ -13,6 +13,7 @@ const DragAndDropCalendar = withDragAndDrop(Calendar)
 const MyCalendarConst = () => {
     const roomFilter = useSelector((state) => (state.roomFilter.room));
     const redEvents = useSelector((state) => (state.eventReducer.events));
+    const personFilter = useSelector((state) => (state.personFilter.person));
 
     const dispatch = useDispatch();
 
@@ -20,7 +21,7 @@ const MyCalendarConst = () => {
         dispatch(changeEvent({events: newEvents}))
     }
 
-    const [state, setState] = useState({
+    /*const [state, setState] = useState({
         events: [
             {   
                 id: 0,
@@ -49,6 +50,9 @@ const MyCalendarConst = () => {
                 room: 3
               }
         ],
+        displayDragItemInCell: true,
+      })*/
+      const [state, setState] = useState({
         displayDragItemInCell: true,
       })
 
@@ -140,7 +144,8 @@ const MyCalendarConst = () => {
     const filterEvents = () => {
         //const returnedEvents = roomFilter == 0? state.events : state.events.filter(event => event.room === roomFilter)
         const returnedEvents = roomFilter == 0? redEvents : redEvents.filter(event => event.room === roomFilter)
-        return returnedEvents;
+        const personFiltered = personFilter == ""?  returnedEvents: returnedEvents.filter(event => event.participants.includes(personFilter))
+        return personFiltered;
     }
 
     return (
