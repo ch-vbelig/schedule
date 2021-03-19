@@ -1,38 +1,31 @@
-import React, { Component } from "react";
-import { Calendar, momentLocalizer } from "react-big-calendar";
-import moment from "moment";
-
+import React from "react";
 import "./App.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
+import BasicCalendar from "./components/BasicCalendar";
+import ReduxToolkitApp from "./components/ReduxToolkitApp";
+import { useDispatch, useSelector } from 'react-redux';
+import Filters from "./components/Filters";
+import BasicCalendarConst from "./components/BasicCalenderConst";
+import MyCalendar from "./components/MyCalendar";
+import MyCalendarConst from "./components/MyCalendarConst";
 
-const localizer = momentLocalizer(moment);
 
-class App extends Component {
-  state = {
-    events: [
-      {
-        start: moment().toDate(),
-        end: moment()
-          .add(1, "days")
-          .toDate(),
-        title: "Some title"
-      }
-    ]
-  };
+const App = () => { 
+  const roomFilter = useSelector((state) => (state.roomFilter.room));
 
-  render() {
     return (
       <div className="App">
-        <Calendar
-          localizer={localizer}
-          defaultDate={new Date()}
-          defaultView="month"
-          events={this.state.events}
-          style={{ height: "100vh" }}
-        />
+        <Filters />
+        {/*<ReduxToolkitApp />*/}
+        
+        {/*<BasicCalendar roomFilter={roomFilter} />  */}
+        {/*<BasicCalendarConst />*/}
+        {/*<MyCalendar />*/} 
+        <MyCalendarConst />
+         
       </div>
     );
-  }
 }
 
 export default App;
+
