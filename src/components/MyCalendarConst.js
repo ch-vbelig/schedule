@@ -3,6 +3,7 @@ import { Calendar, Views, momentLocalizer} from 'react-big-calendar'
 import withDragAndDrop from 'react-big-calendar/lib/addons/dragAndDrop'
 import { useDispatch, useSelector } from 'react-redux';
 import moment from "moment";
+import { changeEvent } from './redux/EventSlice';
 import 'react-big-calendar/lib/addons/dragAndDrop/styles.scss'
 
 const localizer = momentLocalizer(moment);
@@ -11,6 +12,14 @@ const DragAndDropCalendar = withDragAndDrop(Calendar)
 
 const MyCalendarConst = () => {
     const roomFilter = useSelector((state) => (state.roomFilter.room));
+    const redEvents = useSelector((state) => (state.eventReducer.events));
+
+    const dispatch = useDispatch();
+
+    const handleChangeEvents = (newEvents) => {
+        dispatch(changeEvent({events: newEvents}))
+    }
+
     const [state, setState] = useState({
         events: [
             {   
@@ -69,7 +78,8 @@ const MyCalendarConst = () => {
   }
 
   const moveEvent = ({ event, start, end, isAllDay: droppedOnAllDaySlot }) => {
-    const { events } = state
+    //const { events } = state 0000000000000000000000000000000000000000000000000000000000000000000 Раскомментировать если нужно
+    const events = redEvents
 
     let allDay = event.allDay
 
@@ -85,15 +95,17 @@ const MyCalendarConst = () => {
         : existingEvent
     })
 
-    setState({
+    handleChangeEvents(nextEvents);
+    /*setState({
       events: nextEvents,
-    })
+    })0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 Разкомментировать если нужно*/
 
     // alert(`${event.title} was dropped onto ${updatedEvent.start}`)
   }
 
   const resizeEvent = ({ event, start, end }) => {
-    const { events } = state
+    //const { events } = state 0000000000000000000000000000000000000000000000000000000000000 Разкомментировать если нужно
+    const events = redEvents
 
     const nextEvents = events.map(existingEvent => {
       return existingEvent.id == event.id
@@ -101,9 +113,11 @@ const MyCalendarConst = () => {
         : existingEvent
     })
 
-    setState({
+    handleChangeEvents(nextEvents);
+
+    /*setState({
       events: nextEvents,
-    })
+    })0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 Разкомментировать если нужно*/
 
     //alert(`${event.title} was resized to ${start}-${end}`)
   }
@@ -124,7 +138,8 @@ const MyCalendarConst = () => {
 
   
     const filterEvents = () => {
-        const returnedEvents = roomFilter == 0? state.events : state.events.filter(event => event.room === roomFilter)
+        //const returnedEvents = roomFilter == 0? state.events : state.events.filter(event => event.room === roomFilter)
+        const returnedEvents = roomFilter == 0? redEvents : redEvents.filter(event => event.room === roomFilter)
         return returnedEvents;
     }
 
